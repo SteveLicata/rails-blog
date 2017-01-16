@@ -1,0 +1,23 @@
+<h3>Comment on this post!</h3>
+
+<h2>
+  <ul>
+
+    <%= form_for Comment.new do |f| %>
+      <li>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+      </li><br>
+      <li>
+        <%= f.label :user %><br>
+        <%= f.collection_select :user_id, User.all, :id, :fname %>
+      </li><br>
+      <li>
+        <%= f.label :post %><br>
+        <%= f.collection_select :post_id, Post.all, :id, :content %>
+      </li><br>
+
+      <%= f.submit %>
+    <% end %>
+  </ul>
+</h2>

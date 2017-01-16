@@ -1,0 +1,24 @@
+<h3>All Posts: </h3>
+
+<h2>
+  <%= link_to ("Create A New Blog Post"), new_post_path %>
+</h2>
+
+  <hr>
+
+<h2>
+  <% @posts.each do |post| %>
+    <p>Post Title:</p>
+    <%= post.id %>.
+    <%= post.title %> <br><br>
+    <p>Post:</p>
+    <%= post.content %> <br>
+
+    <br><br>
+
+    <%= link_to ("User's Profile"), post_path(post.id) %> |
+    <%= link_to 'Delete Post',  { action: :destroy, id: post.id }, method: :delete %>
+    <hr>
+
+  <% end %>
+</h2>

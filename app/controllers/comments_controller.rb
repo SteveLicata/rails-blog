@@ -5,26 +5,28 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @message = "Post a comment"
+    @comment = Comment.new(post_id: params[:post_id])
   end
 
   def create
     @new_comment = Comment.create(
-      title: params[:post][:title],
-      content: params[:post][:content],
-      user_id: params[:post][:user_id],
-      post_id: params[:post][:post_id]
+      content: params[:comment][:content],
+      user_id: params[:comment][:user_id],
+      post_id: params[:comment][:post_id]
     )
 
     if @new_comment
-      redirect_to url_for(:controller => :comments, :action => :index)
+      # redirect_to url_for(:controller => :comments, :action => :index)
+      redirect_to '/posts' + @new_comment.post.id.to_s
     else
       redirect_to url_for(:controller => :comments, :action => :new)
     end
   end
 
   def show
-    @post = Comment.find(params[:id])
-    @post_user = @post.user.fname
+    @comment = Comment.find(params[:id])
+    @comment_user = @comment.user.fname
 
     if session[:post_id] # if logged in
       @message = "You're now logged in! This is your profile page."
@@ -34,19 +36,18 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @post = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    @post = Comment.find(params[:id])
-    @post.update({
-      title: params[:post][:title],
-      content: params[:post][:content],
-      user_id: params[:post][:user_id],
-      post_id: params[:post][:post_id]
+    @comment = Comment.find(params[:id])
+    @comment.update({
+      content: params[:comment][:content],
+      user_id: params[:comment][:user_id],
+      comment_id: params[:comment][:post_id]
     })
 
-    if (@post)
+    if (@comment)
       redirect_to url_for(:controller => :comments, :action => :index)
     else
       redirect_to url_for(:controller => :comments, :action => :edit)
@@ -54,6 +55,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    puts "Hello" + Comment.find(params[:id]).post.id.to_s
     Comment.delete(params[:id])
     redirect_to url_for(:controller => :comments, :action => :index)
   end

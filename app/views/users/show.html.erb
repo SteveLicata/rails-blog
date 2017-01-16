@@ -1,0 +1,50 @@
+<h3><div><%= @message %></div></h3>
+
+<hr>
+<br>
+
+<h2>
+  <ul>
+    <li>
+      <%= @user.id %>.
+      <%= @user.fname %>
+      <%= @user.lname %>
+    </li><br>
+    <li>
+      <%= @user.username %>
+    </li><br>
+    <li>
+      <%= @user.email %>
+    </li>
+  </ul>
+</h2>
+
+<hr>
+
+<h2>
+  <%= link_to "Update Profile", edit_user_path(user_id: @user.id) %>
+</h2>
+
+<hr>
+
+<br>
+
+<h2>
+<div>Posts by <%= @user.username %>:</div>
+</h2>
+
+<h2>
+  <ul>
+    <% @user_posts.each do |post| %>
+      <li>
+        <%= post.id %>.
+        <%= link_to (post.title), post_path(post.id) %>
+      </li><br>
+      <li>
+        <%= link_to 'Delete post',  { action: :destroy, id: post.id }, method: :delete %>
+        <%= link_to 'Update Post', edit_post_path(user_id: @user.id) %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+</h2>

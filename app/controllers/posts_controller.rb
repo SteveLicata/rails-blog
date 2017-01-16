@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @comment = Comment.new(post_id: params[:post_id])
   end
 
   def create
@@ -24,6 +25,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_user = @post.user.fname
+    @comments = @post.comments
+    
 
     if session[:post_id] # if logged in
       @message = "You're logged in! This is your profile page."

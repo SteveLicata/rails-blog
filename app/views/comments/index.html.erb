@@ -1,0 +1,24 @@
+<h2>
+<%= link_to ("Create A New Comment"), new_comment_path %>
+</h2>
+
+<hr>
+
+<h3>All Comments: </h3>
+
+<hr>
+<br>
+
+<h2>
+  <ul>
+    <% @comments.each do |comment| %>
+    <li>
+      <%= comment.content %>
+    </li><br>
+
+    <%= link_to 'Delete Comment',  { action: :destroy, id: comment.id }, method: :delete %>
+    <hr>
+
+    <% end %>
+  </ul>
+</h2>

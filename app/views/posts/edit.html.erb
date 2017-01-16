@@ -1,0 +1,23 @@
+<h3>Edit Your Post</h3>
+
+<h2>
+  <ul>
+
+    <%= form_for @post do |f| %>
+      <li>
+        <%= f.label :title %>
+        <%= f.text_field :title %> <br>
+      </li><br>
+      <li>
+        <%= f.label :content %>
+        <%= f.text_field :content %> <br>
+      </li><br>
+      <li>
+        <%= f.label :user %>
+        <%= f.collection_select :user_id, User.all, :id, :fname %>
+      </li><br>
+
+      <%= f.submit %>
+    <% end %>
+  </ul>
+</h2>

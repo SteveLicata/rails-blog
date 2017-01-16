@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @message = "Sign up for my blogging app!"
+    @message = "Sign up for World Travel Blog !"
   end
 
   def create

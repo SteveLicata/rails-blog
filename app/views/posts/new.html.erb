@@ -1,0 +1,22 @@
+<h3>Create new post!</h3>
+
+<h2>
+  <ul>
+    <%= form_for Post.new do |f| %>
+      <li>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </li><br>
+      <li>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+      </li><br>
+      <li>
+        <%= f.label :user %><br>
+        <%= f.collection_select :user_id, User.all, :id, :fname %>
+      </li> <br>
+
+      <%= f.submit %>
+    <% end %>
+  </ul>
+</h2>
