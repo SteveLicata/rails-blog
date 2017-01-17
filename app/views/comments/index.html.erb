@@ -1,5 +1,6 @@
 <h2>
 <%= link_to ("Create A New Comment"), new_comment_path %>
+<!-- link to create a new comment -->
 </h2>
 
 <hr>
@@ -14,9 +15,11 @@
     <% @comments.each do |comment| %>
     <li>
       <%= comment.content %>
+      <!-- Loop displays all comments -->
     </li><br>
 
     <%= link_to 'Delete Comment',  { action: :destroy, id: comment.id }, method: :delete %>
+    <!-- link deletes a comment -->
     <hr>
 
     <% end %>

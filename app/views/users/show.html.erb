@@ -2,7 +2,7 @@
 
 <hr>
 <br>
-
+<!-- displays user information -->
 <h2>
   <ul>
     <li>
@@ -20,7 +20,7 @@
 </h2>
 
 <hr>
-
+<!-- link to update users profile -->
 <h2>
   <%= link_to "Update Profile", edit_user_path(user_id: @user.id) %>
 </h2>
@@ -32,7 +32,7 @@
 <h2>
 <div>Posts by <%= @user.username %>:</div>
 </h2>
-
+<!-- displays posts by user -->
 <h2>
   <ul>
     <% @user_posts.each do |post| %>
@@ -41,7 +41,9 @@
         <%= link_to (post.title), post_path(post.id) %>
       </li><br>
       <li>
+        <!-- link to delete post -->
         <%= link_to 'Delete post',  { action: :destroy, id: post.id }, method: :delete %>
+        <!-- link to update post -->
         <%= link_to 'Update Post', edit_post_path(user_id: @user.id) %>
       </li>
       <hr>

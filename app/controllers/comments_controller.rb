@@ -2,11 +2,13 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
+    #instance variable holds all comments
   end
 
   def new
     @message = "Post a comment"
     @comment = Comment.new(post_id: params[:post_id])
+    #instance variable holds new comment
   end
 
   def create
@@ -15,6 +17,7 @@ class CommentsController < ApplicationController
       user_id: params[:comment][:user_id],
       post_id: params[:comment][:post_id]
     )
+    #creates new comment based on comment parameters
 
     if @new_comment
       # redirect_to url_for(:controller => :comments, :action => :index)
@@ -40,13 +43,16 @@ class CommentsController < ApplicationController
   end
 
   def update
+    #finds comment by parameters
     @comment = Comment.find(params[:id])
+    # updates comment by parameters
     @comment.update({
       content: params[:comment][:content],
       user_id: params[:comment][:user_id],
       comment_id: params[:comment][:post_id]
     })
 
+    #redirects if there's a comment
     if (@comment)
       redirect_to url_for(:controller => :comments, :action => :index)
     else
@@ -58,5 +64,6 @@ class CommentsController < ApplicationController
     puts "Hello" + Comment.find(params[:id]).post.id.to_s
     Comment.delete(params[:id])
     redirect_to url_for(:controller => :comments, :action => :index)
+    #method should delete comments
   end
 end

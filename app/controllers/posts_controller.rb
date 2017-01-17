@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   def index
+    #instance variable holds all posts
       @posts = Post.all
   end
 
@@ -14,7 +15,9 @@ class PostsController < ApplicationController
       content: params[:post][:content],
       user_id: params[:post][:user_id]
     )
+    #creates new comment by parameters
 
+    #if new post, redirect
     if @new_post
       redirect_to url_for(:controller => :posts, :action => :index)
     else
@@ -24,10 +27,13 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    #finds post by id paramter
     @post_user = @post.user.fname
+    #displays first name of user that made post
     @comments = @post.comments
-    
+    #displays posts comments
 
+    # If theres a session, redirect
     if session[:post_id] # if logged in
       @message = "You're logged in! This is your profile page."
     else
@@ -46,7 +52,9 @@ class PostsController < ApplicationController
       content: params[:post][:content],
       user_id: params[:post][:user_id]
     })
+    #update by parameters
 
+    #if there's a post, redirect
     if (@post)
       redirect_to url_for(:controller => :posts, :action => :index)
     else
@@ -57,6 +65,7 @@ class PostsController < ApplicationController
   def destroy
     Post.delete(params[:id])
     redirect_to url_for(:controller => :posts, :action => :index)
+    #method destroys a post
   end
 
 end

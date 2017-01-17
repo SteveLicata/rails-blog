@@ -1,8 +1,9 @@
 <h3> <%= @post.user.fname %> <%= @post.user.lname %>'s Post!</h3>
-
+<!-- displays first and last name of user that created post -->
 <h2>
   <ul>
     <li>
+      <!-- displays post information -->
       <%= @post.id %>.
       <%= @post.title %>
     </li><br>
@@ -15,11 +16,13 @@
 
 <hr>
 
-
+<!-- displays comments -->
 <h2>Comments:</h2>
   <h3>
     <% @comments.each do |comment| %>
     <%= comment.content %>
+    <!-- delete comment link -->
+      <%= link_to 'Delete Comment',  { action: :destroy, id: comment.id }, method: :delete %>
     <hr>
     <% end %>
   </h3>
@@ -28,7 +31,7 @@
 
 <h3>Comment on <%= @post.user.fname %> <%= @post.user.lname %>'s post!</h3>
 
-
+<!-- form to create comment -->
 <h2>
   <ul>
     <%= form_for Comment.new do |f| %>
@@ -48,8 +51,6 @@
       <%= f.submit %>
 
       <br><br>
-
-      Commented By: <%= @post.user.fname %> <%= @post.user.lname %>
 
     <% end %>
   </ul>

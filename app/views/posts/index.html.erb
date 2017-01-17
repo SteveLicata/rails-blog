@@ -2,6 +2,7 @@
 
 <h2>
   <%= link_to ("Create A New Blog Post"), new_post_path %>
+  <!-- link to create a new post -->
 </h2>
 
   <hr>
@@ -13,11 +14,13 @@
     <%= post.title %> <br><br>
     <p>Post:</p>
     <%= post.content %> <br>
-
+  <!-- loop displays all posts -->
     <br><br>
 
     <%= link_to ("User's Profile"), post_path(post.id) %> |
+    <!-- link to users profile -->
     <%= link_to 'Delete Post',  { action: :destroy, id: post.id }, method: :delete %>
+    <!-- link to delete user -->
     <hr>
 
   <% end %>
